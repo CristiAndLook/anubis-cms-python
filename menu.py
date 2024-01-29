@@ -1,9 +1,10 @@
 import os
+import helpers
 
 def start():
 
     while True:
-        os.system('clear') # in Windows use 'cls'
+        helpers.clean_screen() 
 
         print('''
         =======================================
@@ -20,12 +21,12 @@ def start():
 
         option = input("Introduce una opcion: ")
 
-        os.system('clear') # in Windows use 'cls'
+        helpers.clean_screen()
 
         if option == "1":
             print("Listar Clientes")        
         elif option == "2":
-            print("Busca Cliente")
+            print("Buscar Cliente")
         elif option == "3":
             print("Anadir Cliente")
         elif option == "4":
