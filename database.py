@@ -34,6 +34,4 @@ class Clients:
     def delete_client(dni):
         client = Clients.search_client(dni)
         Clients.list_clients.remove(client)
-        return client
-        
-        
+        return client        
