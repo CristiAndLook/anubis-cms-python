@@ -9,7 +9,12 @@ class Client:
     
 class Clients:
 
-    list_clients = []
+    list_clients = [
+        Client('11111111A', 'Manuel', 'Garcia'),
+        Client('22222222B', 'Javier', 'Garcia'),
+        Client('33333333C', 'Jorge', 'Garcia'),
+        Client('44444444D', 'Luis', 'Garcia'),
+    ]
 
     @staticmethod
     def search_client(dni):

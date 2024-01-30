@@ -11,6 +11,7 @@ def read_text(long_min=0, long_max=100, msg=None):
     while True:
         text = input("> ")
 
-        if len(text) > long_min or len(text) <= long_max:
-            print(f"Error: La longitud del texto debe estar entre {long_min} y {long_max}")
+        if len(text) >= long_min and len(text) <= long_max:
             return text
+        else:
+            print(f"Error: La longitud del texto debe estar entre {long_min} caracteres y {long_max} caracteres")
