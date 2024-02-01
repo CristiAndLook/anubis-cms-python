@@ -1,4 +1,5 @@
 import unittest
+import helpers
 import copy
 import database as db
 
@@ -20,7 +21,7 @@ class TestDatabase(unittest.TestCase):
 
 
     def test_add_client(self):
-        client = db.Clients.add_client('11111111A', 'James', 'Bond')
+        client = db.Clients.add_client('11111111C', 'James', 'Bond')
 
         self.assertEqual(client.name, 'James')
         self.assertEqual(client.last_name, 'Bond')
@@ -42,6 +43,13 @@ class TestDatabase(unittest.TestCase):
         self.assertEqual(client_deleted.name, 'John')
         self.assertEqual(client_deleted.last_name, 'Doe')
         self.assertEqual(len(db.Clients.list_clients), 1)
+
+    def test_dni_validate(self):
+        self.assertTrue(helpers.dni_validate('12345678P', db.Clients.list_clients))
+        self.assertFalse(helpers.dni_validate('12345678A', db.Clients.list_clients))
+        self.assertFalse(helpers.dni_validate('1234567A', db.Clients.list_clients))
+    
+
 
 
 """

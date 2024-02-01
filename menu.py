@@ -39,7 +39,12 @@ def start():
 
         elif option == "3":
             print("Anadir Cliente")
-            dni = helpers.read_text(9,9, msg="Introduce el DNI del cliente 8 Números y 1 Letra: ").upper()
+            dni = ""
+            while True:
+                dni = helpers.read_text(9,9, msg="Introduce el DNI del cliente 8 Números y 1 Letra: ").upper()
+                if helpers.dni_validate(dni, db.Clients.list_clients):
+                    break
+
             name = helpers.read_text(3,50, msg="Introduce el nombre del cliente: ").capitalize()
             last_name = helpers.read_text(3,50, msg="Introduce el apellido del cliente: ").capitalize()
             client = db.Clients.add_client(dni, name, last_name)
