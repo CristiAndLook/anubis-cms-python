@@ -15,7 +15,7 @@ def read_text(long_min=0, long_max=100, msg=None):
         if len(text) >= long_min and len(text) <= long_max:
             return text
         else:
-            print(f"Error: La longitud del texto debe estar entre {long_min} caracteres y {long_max} caracteres")
+            print("DNI no valido, debe tener 8 numeros y 1 letra al final. Ejemplo: 12345678Z")
 
 def dni_validate(dni, list_clients):
     # 8 numeros y 1 letra

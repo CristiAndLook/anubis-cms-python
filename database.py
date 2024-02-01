@@ -1,3 +1,5 @@
+import csv
+
 class Client:
     def __init__(self, dni, name, last_name):
         self.dni = dni
@@ -9,12 +11,11 @@ class Client:
     
 class Clients:
 
-    list_clients = [
-        Client('11111111A', 'Manuel', 'Garcia'),
-        Client('22222222B', 'Javier', 'Garcia'),
-        Client('33333333C', 'Jorge', 'Garcia'),
-        Client('44444444D', 'Luis', 'Garcia'),
-    ]
+    list_clients = []
+    with open('clients.csv', newline='\n') as file:
+        reader = csv.reader(file, delimiter=';')
+        for dni, name, last_name in reader:
+            list_clients.append(Client(dni, name, last_name))
 
     @staticmethod
     def search_client(dni):
@@ -26,6 +27,7 @@ class Clients:
     def add_client(dni, name, last_name):
         client = Client(dni, name, last_name)
         Clients.list_clients.append(client)
+        Clients.save_clients()
         return client
     
     @staticmethod
@@ -33,10 +35,19 @@ class Clients:
         client = Clients.search_client(dni)
         client.name = name
         client.last_name = last_name
+        Clients.save_clients()
         return client
     
     @staticmethod
     def delete_client(dni):
         client = Clients.search_client(dni)
         Clients.list_clients.remove(client)
-        return client        
+        Clients.save_clients()
+        return client    
+
+    @staticmethod
+    def save_clients():
+        with open('clients.csv', 'w', newline='\n') as file:
+            writer = csv.writer(file, delimiter=';')
+            for client in Clients.list_clients:
+                writer.writerow([client.dni, client.name, client.last_name])    
