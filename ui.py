@@ -60,6 +60,7 @@ class CreateClientWindow(Toplevel, centerWindowMixin):
         self.master.treeview.insert(
             parent="", index="end",iid=self.dni.get(), 
             values=(self.dni.get(), self.name.get(), self.last_name.get()))
+        db.Clients.add_client(self.dni.get(), self.name.get(), self.last_name.get())
         self.close()
 
     def close(self):
@@ -126,6 +127,7 @@ class EditClientWindow(Toplevel, centerWindowMixin):
     def update_client(self):
         client = self.master.treeview.focus()
         self.master.treeview.item(client, values=(self.dni.get(), self.name.get(), self.last_name.get()))
+        db.Clients.modify_client(self.dni.get(), self.name.get(), self.last_name.get())
         self.close()
 
     def close(self):
@@ -188,6 +190,7 @@ class MainWindow(Tk, centerWindowMixin):
             )
             if comfirm:
                 self.treeview.delete(client)
+                db.Clients.delete_client(camps[0])
     
     def add_client(self):
         CreateClientWindow(self)
